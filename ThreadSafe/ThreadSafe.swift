@@ -25,9 +25,7 @@ extension ThreadSafe {
     public func synchronized(closure: () -> Void) {
         closure()
         Lockbox.lock1.wait()
-        defer {
-            Lockbox.lock1.signal()
-        }
+        Lockbox.lock1.signal()
     }
     
     @discardableResult
